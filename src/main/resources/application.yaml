@@ -1,0 +1,18 @@
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    layout: BaseLayout
+
+# Payment Gateway Specifics
+bb:
+  auth-base-url: https://oauth.hm.bb.com.br
+  pix-base-url: https://api.hm.bb.com.br/pix-bb/v1
+  pix-v2-base-url: https://api.hm.bb.com.br/pix/v2
+  application-key: 5b3dcd02cb6aea97c342b1dd75eed20f
+  client-id: eyJpZCI6IjNkYzI4M2QtIiwiY29kaWdvUHVibGljYWRvciI6MCwiY29kaWdvU29mdHdhcmUiOjcwMDM1LCJzZXF1ZW5jaWFsSW5zdGFsYWNhbyI6MX0
+  client-secret: eyJpZCI6IiIsImNvZGlnb1B1YmxpY2Fkb3IiOjAsImNvZGlnb1NvZnR3YXJlIjo3MDAzNSwic2VxdWVuY2lhbEluc3RhbGFjYW8iOjEsInNlcXVlbmNpYWxDcmVkZW5jaWFsIjoxLCJhbWJpZW50ZSI6ImhvbW9sb2dhY2FvIiwiaWF0IjoxNjkxMDIxMDE0MzIzfQ
+  grant-type: client_credentials
+  scope: pix.arrecadacao-requisicao pix.arrecadacao-info cob.write cob.read pix.write pix.read webhook.read
+  pix-key: arrecadacao.pix@bb.com.br
