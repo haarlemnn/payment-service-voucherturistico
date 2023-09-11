@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payment-service
+  labels:
+    app: payment-service
+spec:
+  selector:
+    matchLabels:
+      app: payment-service
+  template:
+    metadata:
+      labels:
+        app: payment-service
+    spec:
+      containers:
+        - name: payment-service
+          image: "haarlemnn/payment-service:master-1.0.0"
+          ports:
+          - containerPort: 8080
+          env:
+          - name: HTTP_PORT
+          - name: SERVER_PORT
+            value: "8080"
+          envFrom:
+            - configMapRef:
+                name: payment-configmap
