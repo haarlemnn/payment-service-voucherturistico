@@ -29,4 +29,6 @@ public class PaymentRequest {
     private String customerEmail;
     private String customerPhone;
 
+    private String pixKey;
+
 }

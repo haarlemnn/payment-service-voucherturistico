@@ -21,4 +21,6 @@ public class CancelPaymentRequest {
     private String transactionId;
     private String paymentId;
 
+    private String pixKey;
+
 }

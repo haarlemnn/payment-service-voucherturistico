@@ -6,6 +6,7 @@ import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.PixCalen
 import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.PixCustomer;
 import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.PixValue;
 import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.request.PixTransactionV2Request;
+import org.apache.commons.lang3.StringUtils;
 
 public class PixTransactionMapper {
 
@@ -16,7 +17,11 @@ public class PixTransactionMapper {
         pixTransactionRequest.setCodigoGuiaRecebimento(transactionId);
 
         // Pix
-        pixTransactionRequest.setCodigoSolicitacaoBancoCentralBrasil(pixKey);
+        if (StringUtils.isNotBlank(paymentRequest.getPixKey())) {
+            pixTransactionRequest.setCodigoSolicitacaoBancoCentralBrasil(paymentRequest.getPixKey());
+        } else {
+            pixTransactionRequest.setCodigoSolicitacaoBancoCentralBrasil(pixKey);
+        }
 
         // Transaction amount
         pixTransactionRequest.setValorOriginalSolicitacao(paymentRequest.getAmount());
@@ -49,7 +54,12 @@ public class PixTransactionMapper {
         pixTransactionV2Request.setCalendario(pixCalendar);
         pixTransactionV2Request.setDevedor(pixCustomer);
         pixTransactionV2Request.setValor(pixValue);
-        pixTransactionV2Request.setChave(pixKey);
+
+        if (StringUtils.isNotBlank(paymentRequest.getPixKey())) {
+            pixTransactionV2Request.setChave(paymentRequest.getPixKey());
+        } else {
+            pixTransactionV2Request.setChave(pixKey);
+        }
 
         return pixTransactionV2Request;
     }

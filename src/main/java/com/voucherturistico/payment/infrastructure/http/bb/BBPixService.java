@@ -12,6 +12,7 @@ import com.voucherturistico.payment.infrastructure.http.bb.models.pix.response.P
 import com.voucherturistico.payment.infrastructure.http.bb.models.pix.response.PixDetailsResponse;
 import com.voucherturistico.payment.infrastructure.http.bb.models.pix.response.PixTransactionCancelledResponse;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -62,7 +63,12 @@ public class BBPixService {
 
         CancelPixTransaction cancelPixTransaction = new CancelPixTransaction();
         cancelPixTransaction.setNumeroConvenio(Integer.parseInt(cancelPaymentRequest.getEntityId()));
-        cancelPixTransaction.setCodigoSolicitacaoBancoCentralBrasil(bbApiConfig.getPixKey());
+
+        if (StringUtils.isNotBlank(cancelPaymentRequest.getPixKey())) {
+            cancelPixTransaction.setCodigoSolicitacaoBancoCentralBrasil(cancelPaymentRequest.getPixKey());
+        } else {
+            cancelPixTransaction.setCodigoSolicitacaoBancoCentralBrasil(bbApiConfig.getPixKey());
+        }
 
         return this.bbPixApi.cancelPixTransaction(
             bbApiConfig.getApplicationKey(),
