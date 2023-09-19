@@ -7,12 +7,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentRequest {
 
-    private String entityId;
+    private String barcode;
 
     @NotNull(message = "PaymentRequest 'amount' is required")
     private BigDecimal amount;
@@ -29,6 +30,7 @@ public class PaymentRequest {
     private String customerEmail;
     private String customerPhone;
 
-    private String pixKey;
+    @NotNull(message = "PaymentRequest 'providerSpecifics' is required")
+    private Map<String, String> providerSpecifics;
 
 }

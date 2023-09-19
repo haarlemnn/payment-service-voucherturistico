@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
-@FeignClient(name = "bb-pix", url = "${bb.pix-base-url}", configuration = { FeignClientErrorDecoderConfig.class, FeignClientDecoderConfig.class })
+@FeignClient(name = "bb-pix", url = "${bb.base-url}/pix-bb/v1", configuration = { FeignClientErrorDecoderConfig.class, FeignClientDecoderConfig.class })
 public interface BBPixApi {
 
     @RequestMapping(method = RequestMethod.POST, value = "/arrecadacao-qrcodes")

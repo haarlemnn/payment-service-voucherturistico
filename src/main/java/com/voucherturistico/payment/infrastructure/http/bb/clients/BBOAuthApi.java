@@ -7,6 +7,7 @@ import com.voucherturistico.payment.infrastructure.http.bb.models.AccessTokenRes
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -17,6 +18,6 @@ import java.util.Map;
 public interface BBOAuthApi {
 
     @RequestMapping(method = RequestMethod.POST, value = "/oauth/token", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-    AccessTokenResponse authenticate(Map<String, ?> authRequest);
+    AccessTokenResponse authenticate(Map<String, ?> authRequest, @RequestHeader(name = "Authorization") String accessBasicToken);
 
 }

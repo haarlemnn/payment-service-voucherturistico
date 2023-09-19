@@ -98,6 +98,7 @@ public class PixDetailsMapper {
             }
         } else {
             payment.setAmount(new BigDecimal(pixDetailsResponse.getValor().getOriginal()));
+            paymentStatusResponse.setStatus(getPaymentStatus(pixDetailsResponse.getStatus()));
         }
 
         paymentStatusResponse.setPayment(payment);
@@ -154,6 +155,7 @@ public class PixDetailsMapper {
 
         PaymentStatusResponse paymentStatusResponse = new PaymentStatusResponse();
         paymentStatusResponse.setPayment(payment);
+        paymentStatusResponse.setStatus(getPaymentStatus(pixDetailsResponse.getEstadoSolicitacao()));
 
         return paymentStatusResponse;
     }

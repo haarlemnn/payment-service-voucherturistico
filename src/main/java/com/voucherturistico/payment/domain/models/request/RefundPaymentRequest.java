@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.util.Map;
 
 @Data
 public class RefundPaymentRequest {
@@ -21,5 +22,8 @@ public class RefundPaymentRequest {
     private PaymentType paymentType;
     @NotNull(message = "RefundPaymentRequest 'paymentMethod' is required")
     private PaymentMethodType paymentMethod;
+
+    @NotNull(message = "RefundPaymentRequest 'providerSpecifics' is required")
+    private Map<String, String> providerSpecifics;
 
 }

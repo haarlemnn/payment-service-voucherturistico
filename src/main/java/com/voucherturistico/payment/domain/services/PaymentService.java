@@ -7,6 +7,8 @@ import com.voucherturistico.payment.domain.models.request.PaymentStatusRequest;
 import com.voucherturistico.payment.domain.models.request.RefundPaymentRequest;
 import com.voucherturistico.payment.domain.models.response.PaymentStatusResponse;
 
+import java.util.Map;
+
 public interface PaymentService {
 
     PaymentStatusResponse initPayment(PaymentRequest paymentRequest);
@@ -14,5 +16,6 @@ public interface PaymentService {
     PaymentStatusResponse cancelPayment(CancelPaymentRequest cancelPaymentRequest);
     PaymentStatusResponse refundPayment(RefundPaymentRequest refundPaymentRequest);
     PaymentType type();
+    void setProviderSpecifics(Map<String, String> providerSpecifics);
 
 }

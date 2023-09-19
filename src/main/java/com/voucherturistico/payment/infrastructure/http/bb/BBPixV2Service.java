@@ -32,9 +32,9 @@ public class BBPixV2Service {
     }
 
     public PixDetailsV2Response createPixTransaction(String transactionId, PaymentRequest paymentRequest) {
-        log.info("BBPixV2Service [createPixTransaction] - Creating Pix transaction with transactionId {} and entityId {}", transactionId, paymentRequest.getEntityId());
+        log.info("BBPixV2Service [createPixTransaction] - Creating Pix transaction with transactionId {} and entityId {}", transactionId, bbApiConfig.getEntityId());
 
-        PixTransactionV2Request pixTransactionV2Request = PixTransactionMapper.fromPaymentRequestToPixTransactionV2Request(paymentRequest, bbApiConfig.getPixKey());
+        PixTransactionV2Request pixTransactionV2Request = PixTransactionMapper.fromPaymentRequestToPixTransactionV2Request(paymentRequest, bbApiConfig);
 
         return this.bbPixV2Api.createPixTransaction(
             bbApiConfig.getApplicationKey(),
@@ -45,7 +45,7 @@ public class BBPixV2Service {
     }
 
     public PixDetailsV2Response getPixDetails(PaymentStatusRequest paymentStatusRequest) {
-        log.info("BBPixV2Service [getPixDetails] - Getting pix payment details with transactionId {} and entityId {}", paymentStatusRequest.getTransactionId(), paymentStatusRequest.getEntityId());
+        log.info("BBPixV2Service [getPixDetails] - Getting pix payment details with transactionId {} and entityId {}", paymentStatusRequest.getTransactionId(), bbApiConfig.getEntityId());
 
         return this.bbPixV2Api.pixDetails(
             bbApiConfig.getApplicationKey(),

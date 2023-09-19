@@ -8,20 +8,14 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class BBApiConfig {
 
-    @Value("${bb.application-key}")
     public String applicationKey;
-
-    @Value("${bb.client-id}")
     public String clientId;
-    @Value("${bb.client-secret}")
     public String clientSecret;
 
-    @Value("${bb.grant-type}")
     public String grantType;
-    @Value("${bb.scope}")
     public String scope;
 
-    @Value("${bb.pix-key}")
+    private String entityId;
     public String pixKey;
 
 }

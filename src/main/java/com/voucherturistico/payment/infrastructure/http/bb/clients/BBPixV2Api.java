@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
-@FeignClient(name = "bb-pix-v2", url = "${bb.pix-v2-base-url}", configuration = { FeignClientErrorDecoderConfig.class, FeignClientDecoderConfig.class })
+@FeignClient(name = "bb-pix-v2", url = "${bb.base-url}/pix/v2", configuration = { FeignClientErrorDecoderConfig.class, FeignClientDecoderConfig.class })
 public interface BBPixV2Api {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/cob/{transactionId}")

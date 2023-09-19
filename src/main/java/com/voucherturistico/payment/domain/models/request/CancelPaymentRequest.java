@@ -6,11 +6,11 @@ import com.voucherturistico.payment.domain.enums.PaymentType;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CancelPaymentRequest {
-
-    private String entityId;
 
     @NotNull(message = "CancelPaymentRequest 'paymentType' is required")
     private PaymentType paymentType;
@@ -21,6 +21,7 @@ public class CancelPaymentRequest {
     private String transactionId;
     private String paymentId;
 
-    private String pixKey;
+    @NotNull(message = "CancelPaymentRequest 'providerSpecifics' is required")
+    private Map<String, String> providerSpecifics;
 
 }

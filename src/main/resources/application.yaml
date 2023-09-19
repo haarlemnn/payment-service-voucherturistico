@@ -9,11 +9,4 @@ springdoc:
 # Payment Gateway Specifics
 bb:
   auth-base-url: ${BB_AUTH_BASE_URL:https://oauth.hm.bb.com.br}
-  pix-base-url: ${BB_PIX_BASE_URL:https://api.hm.bb.com.br/pix-bb/v1}
-  pix-v2-base-url: ${BB_PIX_V2_BASE_URL:https://api.hm.bb.com.br/pix/v2}
-  application-key: ${BB_APPLICATION_KEY:5b3dcd02cb6aea97c342b1dd75eed20f}
-  client-id: ${BB_CLIENT_ID:eyJpZCI6IjNkYzI4M2QtIiwiY29kaWdvUHVibGljYWRvciI6MCwiY29kaWdvU29mdHdhcmUiOjcwMDM1LCJzZXF1ZW5jaWFsSW5zdGFsYWNhbyI6MX0}
-  client-secret: ${BB_CLIENT_SECRET:eyJpZCI6IiIsImNvZGlnb1B1YmxpY2Fkb3IiOjAsImNvZGlnb1NvZnR3YXJlIjo3MDAzNSwic2VxdWVuY2lhbEluc3RhbGFjYW8iOjEsInNlcXVlbmNpYWxDcmVkZW5jaWFsIjoxLCJhbWJpZW50ZSI6ImhvbW9sb2dhY2FvIiwiaWF0IjoxNjkxMDIxMDE0MzIzfQ}
-  grant-type: ${BB_GRANT_TYPE:client_credentials}
-  scope: ${BB_SCOPE:pix.arrecadacao-requisicao pix.arrecadacao-info cob.write cob.read pix.write pix.read webhook.read}
-  pix-key: ${PIX_KEY:9e881f18-cc66-4fc7-8f2c-a795dbb2bfc1}
+  base-url: ${BB_PIX_BASE_URL:https://api.hm.bb.com.br}

@@ -6,13 +6,13 @@ import com.voucherturistico.payment.domain.enums.PaymentType;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
+import java.util.Map;
+
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PaymentStatusRequest {
 
     private String paymentId;
-
-    private String entityId;
 
     @NotNull(message = "PaymentStatusRequest 'transactionId' is required")
     private String transactionId;
@@ -22,5 +22,8 @@ public class PaymentStatusRequest {
 
     @NotNull(message = "PaymentStatusRequest 'paymentMethod' is required")
     private PaymentMethodType paymentMethod;
+
+    @NotNull(message = "PaymentStatusRequest 'providerSpecifics' is required")
+    private Map<String, String> providerSpecifics;
 
 }

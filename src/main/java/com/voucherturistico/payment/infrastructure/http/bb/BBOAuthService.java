@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,7 +30,10 @@ public class BBOAuthService {
         authRequest.put("grant_type", bbApiConfig.getGrantType());
         authRequest.put("scope", bbApiConfig.getScope());
 
-        AccessTokenResponse accessTokenResponse = bboAuthApi.authenticate(authRequest);
+        String authCredentials = bbApiConfig.getClientId() + ":" + bbApiConfig.getClientSecret();
+        String accessBasicToken = Base64.getEncoder().encodeToString(authCredentials.getBytes());
+
+        AccessTokenResponse accessTokenResponse = bboAuthApi.authenticate(authRequest, String.format("Basic %s", accessBasicToken));
         return accessTokenResponse.getAccessToken();
     }
 

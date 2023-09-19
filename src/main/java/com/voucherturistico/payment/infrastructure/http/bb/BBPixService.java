@@ -32,12 +32,12 @@ public class BBPixService {
     }
 
     public PixCreatedResponse createPixTransaction(String transactionId, PaymentRequest paymentRequest) {
-        log.info("BBPixService [createPixTransaction] - Creating Pix transaction with transactionId {} and entityId {}", transactionId, paymentRequest.getEntityId());
+        log.info("BBPixService [createPixTransaction] - Creating Pix transaction with transactionId {} and entityId {}", transactionId, bbApiConfig.getEntityId());
 
         PixTransactionRequest pixTransactionRequest = PixTransactionMapper.fromPaymentRequestToPixTransactionRequest(
             transactionId,
             paymentRequest,
-            bbApiConfig.getPixKey()
+            bbApiConfig
         );
 
         return this.bbPixApi.createPixTransaction(
@@ -48,11 +48,11 @@ public class BBPixService {
     }
 
     public PixDetailsResponse getPixDetails(PaymentStatusRequest paymentStatusRequest) {
-        log.info("BBPixService [getPixDetails] - Getting pix payment details with transactionId {} and entityId {}", paymentStatusRequest.getTransactionId(), paymentStatusRequest.getEntityId());
+        log.info("BBPixService [getPixDetails] - Getting pix payment details with transactionId {} and entityId {}", paymentStatusRequest.getTransactionId(), bbApiConfig.getEntityId());
 
         return this.bbPixApi.pixDetails(
             bbApiConfig.getApplicationKey(),
-            paymentStatusRequest.getEntityId(),
+            bbApiConfig.getEntityId(),
             bboAuthService.buildAuthHeader(),
             paymentStatusRequest.getTransactionId()
         );
@@ -62,10 +62,10 @@ public class BBPixService {
         log.info("BBPixService [cancelPixTransaction] - Cancelling pix transaction with transactionId {}", cancelPaymentRequest.getTransactionId());
 
         CancelPixTransaction cancelPixTransaction = new CancelPixTransaction();
-        cancelPixTransaction.setNumeroConvenio(Integer.parseInt(cancelPaymentRequest.getEntityId()));
+        cancelPixTransaction.setNumeroConvenio(Integer.parseInt(bbApiConfig.getEntityId()));
 
-        if (StringUtils.isNotBlank(cancelPaymentRequest.getPixKey())) {
-            cancelPixTransaction.setCodigoSolicitacaoBancoCentralBrasil(cancelPaymentRequest.getPixKey());
+        if (StringUtils.isNotBlank(bbApiConfig.getPixKey())) {
+            cancelPixTransaction.setCodigoSolicitacaoBancoCentralBrasil(bbApiConfig.getPixKey());
         } else {
             cancelPixTransaction.setCodigoSolicitacaoBancoCentralBrasil(bbApiConfig.getPixKey());
         }
