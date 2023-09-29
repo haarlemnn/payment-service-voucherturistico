@@ -33,7 +33,14 @@ public class PixTransactionMapper {
         pixTransactionRequest.setCpfDevedor(paymentRequest.getCustomerDocument());
         pixTransactionRequest.setNomeDevedor(paymentRequest.getCustomerName());
         pixTransactionRequest.setEmailDevedor(paymentRequest.getCustomerEmail());
-        pixTransactionRequest.setNumeroTelefoneDevedor(paymentRequest.getCustomerPhone());
+
+        if (StringUtils.isNotBlank(paymentRequest.getCustomerPhone())) {
+            String phoneCode = paymentRequest.getCustomerPhone().substring(0, 2);
+            String phone = paymentRequest.getCustomerPhone().substring(2);
+
+            pixTransactionRequest.setDddTelefoneDevedor(Integer.valueOf(phoneCode));
+            pixTransactionRequest.setNumeroTelefoneDevedor(phone);
+        }
 
         pixTransactionRequest.setQuantidadeSegundoExpiracao(3600);
 
