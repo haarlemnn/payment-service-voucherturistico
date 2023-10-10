@@ -10,3 +10,4 @@ springdoc:
 bb:
   auth-base-url: ${BB_AUTH_BASE_URL:https://oauth.hm.bb.com.br}
   base-url: ${BB_PIX_BASE_URL:https://api.hm.bb.com.br}
+  base-url-v2: ${BB_PIX_V2_BASE_URL:https://api.hm.bb.com.br}
