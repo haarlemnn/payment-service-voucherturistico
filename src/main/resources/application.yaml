@@ -1,6 +1,10 @@
 server:
   port: 8080
 
+spring:
+  profiles:
+    active: '@activeProfile@'
+
 springdoc:
   swagger-ui:
     layout: BaseLayout

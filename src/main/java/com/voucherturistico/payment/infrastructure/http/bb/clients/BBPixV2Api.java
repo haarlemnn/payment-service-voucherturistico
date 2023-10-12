@@ -2,6 +2,7 @@ package com.voucherturistico.payment.infrastructure.http.bb.clients;
 
 import com.voucherturistico.payment.infrastructure.configs.FeignClientDecoderConfig;
 import com.voucherturistico.payment.infrastructure.configs.FeignClientErrorDecoderConfig;
+import com.voucherturistico.payment.infrastructure.http.bb.configs.BBPixV2ApiConfig;
 import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.request.CancelPixTransactionV2Request;
 import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.request.PixRefundRequest;
 import com.voucherturistico.payment.infrastructure.http.bb.models.pixv2.request.PixTransactionV2Request;
@@ -17,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Component
-@FeignClient(name = "bb-pix-v2", url = "${bb.base-url-v2}/pix/v2", configuration = { FeignClientErrorDecoderConfig.class, FeignClientDecoderConfig.class })
+@FeignClient(name = "bb-pix-v2", url = "${bb.base-url-v2}/pix/v2", configuration = { BBPixV2ApiConfig.class, FeignClientErrorDecoderConfig.class, FeignClientDecoderConfig.class })
 public interface BBPixV2Api {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/cob/{transactionId}")
