@@ -8,6 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 public class PaymentServiceApplication {
 
+	static {
+		System.setProperty("jdk.tls.maxHandshakeMessageSize", "50000");
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(PaymentServiceApplication.class, args);
 	}

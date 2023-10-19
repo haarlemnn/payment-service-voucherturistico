@@ -41,7 +41,7 @@ public class BBPixV2ApiConfig {
         };
 
         var client = new okhttp3.OkHttpClient.Builder()
-            .sslSocketFactory(getSSLFactory().getSslSocketFactory(), (X509TrustManager)trustAllCerts[0])
+            .sslSocketFactory(getSSLFactory().getSslSocketFactory(), (X509TrustManager) trustAllCerts[0])
             .hostnameVerifier(getSSLFactory().getHostnameVerifier())
             .build();
 
@@ -53,6 +53,7 @@ public class BBPixV2ApiConfig {
             .loadIdentityMaterial(Paths.get("cert/bb/cert-chain.pem"), Paths.get("cert/bb/key-private.pem"));
 
         return SSLFactory.builder()
+            .withProtocols("TLSv1.2")
             .withIdentityMaterial(keyManager)
             .build();
     }
