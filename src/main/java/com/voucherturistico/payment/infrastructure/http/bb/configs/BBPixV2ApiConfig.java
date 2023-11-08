@@ -1,6 +1,7 @@
 package com.voucherturistico.payment.infrastructure.http.bb.configs;
 
 import feign.okhttp.OkHttpClient;
+import jakarta.annotation.PostConstruct;
 import nl.altindag.ssl.SSLFactory;
 import nl.altindag.ssl.util.PemUtils;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +14,11 @@ import java.nio.file.Paths;
 import java.security.cert.CertificateException;
 
 public class BBPixV2ApiConfig {
+
+    @PostConstruct
+    public void configureSystemProperties() {
+        System.setProperty("jdk.tls.maxHandshakeMessageSize", "262144");
+    }
 
     @Bean
     @Profile("!production")
@@ -42,7 +48,6 @@ public class BBPixV2ApiConfig {
 
         var client = new okhttp3.OkHttpClient.Builder()
             .sslSocketFactory(getSSLFactory().getSslSocketFactory(), (X509TrustManager) trustAllCerts[0])
-            .hostnameVerifier(getSSLFactory().getHostnameVerifier())
             .build();
 
         return new OkHttpClient(client);
@@ -55,6 +60,7 @@ public class BBPixV2ApiConfig {
         return SSLFactory.builder()
             .withProtocols("TLSv1.2")
             .withIdentityMaterial(keyManager)
+            .withSwappableIdentityMaterial()
             .build();
     }
 
