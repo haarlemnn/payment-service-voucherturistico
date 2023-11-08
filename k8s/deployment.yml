@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: "haarlemnn/payment-service:master-1.0.5"
+          image: "haarlemnn/payment-service:master-1.0.6"
           ports:
           - containerPort: 8080
           env:
